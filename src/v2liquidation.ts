@@ -128,8 +128,15 @@ function parseUsers(payload) {
   });
 
   //filter out loans under a threshold that we know will not be profitable (liquidation_threshold)
-  loans = loans.filter(loan => loan.max_borrowedPrincipal * allowedLiquidation * (loan.max_collateralBonus-1) * loan.max_borrowedPriceInEth / 10 ** TOKEN_LIST[loan.max_borrowedSymbol].decimals >= profit_threshold)
-  return loans;
+  loans = loans.filter(loan => {
+    if (!TOKEN_LIST[loan.max_borrowedSymbol]) {
+        console.warn(`Warning: Symbol not found in TOKEN_LIST: ${loan.max_borrowedSymbol}`);
+        return false; // Skip this loan as the token is not found
+    }
+    return loan.max_borrowedPrincipal * allowedLiquidation * (loan.max_collateralBonus - 1) * loan.max_borrowedPriceInEth / 10 ** TOKEN_LIST[loan.max_borrowedSymbol].decimals >= profit_threshold;
+});
+
+return loans;
 }
 async function liquidationProfits(loans){
   loans.map(async (loan) => {
