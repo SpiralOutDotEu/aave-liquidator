@@ -1,13 +1,20 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import { ChainId, Token, WETH, Fetcher, Route, TokenAmount } from '@uniswap/sdk'
-import { useAllCommonPairs, useTradeExactIn } from './uniswap/trades.ts';
-import { setGlobals } from './globals';
+import {
+  ChainId,
+  Token,
+  WETH,
+  Fetcher,
+  Route,
+  TokenAmount,
+} from "@uniswap/sdk";
+// import { useAllCommonPairs, useTradeExactIn } from './uniswap/trades.ts';
+import { setGlobals } from "./globals";
 
-import { liquidate } from './liquidation/liquidation';
-import { getGas,gas_cost } from './utils/gas'
-import { fetchV2UnhealthyLoans } from './v2liquidation';
-require('isomorphic-fetch');
+import { liquidate } from "./liquidation/liquidation";
+import { getGas, gas_cost } from "./utils/gas";
+import { fetchV3UnhealthyLoans } from "./v3liquidation";
+require("isomorphic-fetch");
 
 /*
 This is a place holder for implementing the liquidation call which would fully automate this bot
@@ -27,22 +34,30 @@ delayedFetchUnhealthyLoans();
 
 //infinite loop calling fetchUnhealthyLoans
 //sleep for 1 minute before each call
-async function delayedFetchUnhealthyLoans(){
+async function delayedFetchUnhealthyLoans() {
   //var fromTokenAmount = new TokenAmount(TOKEN_LIST["WBTC"], 1000)// this is the number of coins to trade (should have many 0's)
   //console.log (JSON.stringify(useTradeExactIn(fromTokenAmount,TOKEN_LIST["ZRX"]), null, 2))
   //fetchV2UnhealthyLoans("0xfe206f90c58feb8e42474c5074de43c22da8bc35");
-  while(1==1){
-    console.log(`gas cost ${gas_cost}`)
-    console.log("fetching loans")
+  while (1 == 1) {
+    console.log(`gas cost ${gas_cost}`);
+    console.log("fetching loans");
 
-    fetchV2UnhealthyLoans();
+    let allLoans = [];
+    const totalPages = 5;
+
+    for (let i = 0; i < totalPages; i++) {
+      console.log("Fetching loans page", i);
+      const loans = await fetchV3UnhealthyLoans("", i);
+      allLoans.push(...loans.data.users); // Append the loans from each page
+      console.log("Loans length for page", i, ":", loans.data.users.length);
+      await sleep(60000); // Sleep between fetches
+    }
+
     getGas();
-    await sleep(60000);
   }
   //TODO calculate liquidation threshold daily
-
 }
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

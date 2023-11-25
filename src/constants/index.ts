@@ -1,6 +1,6 @@
-import { ChainId, JSBI, Percent, Token } from '@uniswap/sdk'
+import { ChainId, Token } from '@uniswap/sdk-core'
 
-export const APP_CHAIN_ID = ChainId.MAINNET
+export const APP_CHAIN_ID = ChainId.POLYGON
 
 const token_list_mainnet=
 {
@@ -30,37 +30,24 @@ const token_list_mainnet=
   "ZRX" : new Token(ChainId.MAINNET, '0xE41d2489571d322189246DaFA5ebDe1F4699F498', 18, 'ZRX', '0x'),
   "BAL" : new Token(ChainId.MAINNET, '0xba100000625a3754423978a60c9317c58a424e3D', 18, 'BAL', 'Balancer'),
 }
-const token_list_kovan =
+
+const token_list_polygon =
 {
-  "DAI" : new Token(ChainId.KOVAN, '0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD', 18, 'DAI', 'Dai Stablecoin'),
-  "USDC" : new Token(ChainId.KOVAN, '0xe22da380ee6B445bb8273C81944ADEB6E8450422', 6, 'USDC', 'USD//C'),
-  "USDT" : new Token(ChainId.KOVAN, '0xf3e0d7bF58c5d455D31ef1c2d5375904dF525105', 6, 'USDT', 'Tether USD'),
-  "COMP" : new Token(ChainId.KOVAN, '0x61460874a7196d6a22D1eE4922473664b3E95270', 18, 'COMP', 'Compound'),
-  "MKR" : new Token(ChainId.KOVAN, '0xaC94Ea989f6955C67200DD67F0101e1865A560Ea', 18, 'MKR', 'Maker'),
-  "AMPL" : new Token(ChainId.KOVAN, '0xd2eC3a70EF3275459f5c7a1d5930E9024bA3c4f3', 9, 'AMPL', 'Ampleforth'),
-  "WBTC" : new Token(ChainId.KOVAN, '0xA0A5aD2296b38Bd3e3Eb59AAEAF1589E8d9a29A9', 8, 'WBTC', 'Wrapped BTC'),
-  "AAVE" : new Token(ChainId.KOVAN, '0xB597cd8D3217ea6477232F9217fa70837ff667Af', 18, 'AAVE', 'AAVE'),
-  "BAT" : new Token(ChainId.KOVAN, '0x59E7DAECCD2c9d4bAC099Ef13b52f5aa8f66DbbC', 18, 'BAT', 'Basic Attention'),
-  "BUSD" : new Token(ChainId.KOVAN, '0x942364e96D4482Bbb3b42a5A08310b5894077007', 18, 'BUSD', 'Binance USD stablecoin'),
-  //"CRV" : new Token(ChainId.MAINNET, '0xD533a949740bb3306d119CC777fa900bA034cd52', 18, 'CRV', 'Curve'),
-  "ENJ" : new Token(ChainId.KOVAN, '0xC64f90Cd7B564D3ab580eb20a102A8238E218be2', 18, 'ENJ', 'Enjin'),
-  //"GUSD" : new Token(ChainId.MAINNET, '0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd', 2, 'GUSD', 'Gemini Dollar'),
-  "KNC" : new Token(ChainId.KOVAN, '0xB1c197D2b573ab2baAF040ef670E9C5E3711fb47', 18, 'KNC', 'KyberNetwork'),
-  "LINK" : new Token(ChainId.KOVAN, '0xa36085F69e2889c224210F603D836748e7dC0088', 18, 'LINK', 'ChainLink'),
-  "MANA" : new Token(ChainId.KOVAN, '0x738Dc6380157429e957d223e6333Dc385c85Fec7', 18, 'MANA', 'Decentraland'),
-  "REN" : new Token(ChainId.KOVAN, '0x2CD647668494c1B15743AB283A0f980d90a87394', 18, 'REN', 'Republic'),
-  "SNX" : new Token(ChainId.KOVAN, '0x7FDb81B0b8a010dd4FFc57C3fecbf145BA8Bd947', 18, 'SNX', 'Synthetix Network'),
-  //"SUSD" : new Token(ChainId.KOVAN, '0x406555dbf02e9e4df9adeaec9da76abeed8c1bc3', 18, 'SUSD', 'Synth sUSD'),
-  "TUSD" : new Token(ChainId.KOVAN, '0xC6e977741487dd8457397b185709CD89B0CF5E7e', 18, 'TUSD', 'TrueUSD'),
-  //"UNI" : new Token(ChainId.MAINNET, '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', 18, 'UNI', 'UniSwap'),
-  "WETH" : new Token(ChainId.KOVAN, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
-  "YFI" : new Token(ChainId.KOVAN, '0xb7c325266ec274fEb1354021D27FA3E3379D840d', 18, 'YFI', 'yearn.finance'),
-  "ZRX" : new Token(ChainId.KOVAN, '0xD0d76886cF8D952ca26177EB7CfDf83bad08C00C', 18, 'ZRX', '0x'),
-  //"BAL" : new Token(ChainId.MAINNET, '0xba100000625a3754423978a60c9317c58a424e3D', 18, 'BAL', 'Balancer'),
+  "DAI" : new Token(ChainId.POLYGON, '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063', 18, 'DAI', 'Dai Stablecoin'),
+  "USDC" : new Token(ChainId.POLYGON, '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174', 6, 'USDC', 'USDC'),
+  "WETH" : new Token(ChainId.POLYGON, '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', 18, 'WETH', 'Wrapped Ether'),
+  "WMATIC" : new Token(ChainId.POLYGON, '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270', 18, 'WMATIC', 'Wrapped Matic'),
+  "WBTC" : new Token(ChainId.POLYGON, '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6', 8, 'WBTC', 'Wrapped BTC'),
+  "SUSHI" : new Token(ChainId.POLYGON, '0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a', 18, 'SUSHI', 'SushiToken (PoS)'),
+  "MaticX" : new Token(ChainId.POLYGON, '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6', 18, 'MaticX', 'Liquid Staking Matic (PoS)'),
+  "stMATIC" : new Token(ChainId.POLYGON, '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4', 18, 'stMATIC', 'Staked MATIC (PoS)'),
+  "USDT" : new Token(ChainId.POLYGON, '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', 6, 'USDT', 'Tether USD'),
+  "EURS" : new Token(ChainId.POLYGON, '0xE111178A87A3BFf0c8d18DECBa5798827539Ae99', 2, 'EURS', 'STASIS EURS Token'),
+
 }
 const token_list =
   {
     [ChainId.MAINNET] : token_list_mainnet,
-    [ChainId.KOVAN] : token_list_kovan,
+    [ChainId.POLYGON] : token_list_polygon,
   }
-export const TOKEN_LIST = token_list[APP_CHAIN_ID]
+export const TOKEN_LIST = token_list[APP_CHAIN_ID];
