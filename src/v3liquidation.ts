@@ -5,6 +5,7 @@ import { useTradeExactIn } from "./uniswap/trades";
 import { gas_cost } from "./utils/gas";
 const GAS_USED_ESTIMATE = 1000000;
 const FLASH_LOAN_FEE = 0.009;
+import { ApiResponse, User } from './types'; 
 
 const theGraphURL_v3_polygon =
   "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-polygon";
@@ -20,7 +21,7 @@ type LoanType = any;
 export const fetchV3UnhealthyLoans = async (
   user_id: string,
   page: number
-): Promise<LoanType[]> => {
+): Promise<ApiResponse> => {
   var count = page;
   var maxCount = 6;
   var user_id_query = "";
@@ -88,10 +89,10 @@ export const fetchV3UnhealthyLoans = async (
     //   //   );
     //   return res.data;
     // });
-    const data = await res.json();
+    const data: ApiResponse = await res.json();
     return data;
   } catch (error) {
-    return [];
+    return { data: { users: [] } };
   }
   // count++;
   // await sleep(60000);
